@@ -1,6 +1,9 @@
 let  mapleader = '\'
 nmap <leader>ne :NERDTree<cr>
-set  nu
+
+set nu
+set cursorline
+set cursorcolumn
 
 highlight LineNr ctermfg = grey 
 
