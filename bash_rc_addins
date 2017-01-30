@@ -1,0 +1,16 @@
+#this will force the terminal to display in 256 color if available
+if [ -n "$DISPLAY" -a "$TERM" == "xterm" ]; then
+    export TERM=xterm-256color
+fi
+
+#if you're ever in a blank bashrc, put aliases in here
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+#some helpful aliases (baked into ubuntu :O )
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+
