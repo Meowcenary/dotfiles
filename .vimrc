@@ -1,5 +1,5 @@
 let  mapleader = '\'
-nmap <leader>ne :NERDTree<cr>
+nmap <leader>t :NERDTree<cr>
 
 set nu
 set cursorline
