@@ -1,7 +1,7 @@
 .vimrc:
-    uses vim-plug from here: https://github.com/junegunn/vim-plug
+   uses vim-plug from here: https://github.com/junegunn/vim-plug
 
-    mostly getting plugins from http://vimawesome.com/
+   mostly getting plugins from http://vimawesome.com/
 
    vim commands: :FixWhitespace , removes whitespace at end of lines
                  ctrl + a , comments out a section of code
