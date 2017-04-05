@@ -7,7 +7,7 @@ sudo apt-get -y --force-yes upgrade
 # install apps
 sudo apt-get install \
 	spotify-client git filezilla skype\
-	openbox obconf
+	openbox obconf feh tint2
 
 # remove unwanted default folders
 rm -rf ~/Documents

@@ -1,0 +1,11 @@
+sudo apt-get install xdotool
+
+xdotool key ctrl+shift+t
+
+OR
+
+hit ctrl+shift+t
+
+either way, you can switch tabs with
+
+alt + [tab number 1 - ?]
