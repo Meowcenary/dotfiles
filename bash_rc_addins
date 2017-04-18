@@ -18,3 +18,8 @@ alias l='ls -CF'
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+#add this to set caps lock to ctrl
+#there is probably a better file than bashrc
+#but for now it's a simple way to get it done
+setxkbmap -option caps:ctrl_modifier
