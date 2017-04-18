@@ -13,4 +13,8 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+#this needs to be added for rbenv to automatically go to the version
+#you have set
 
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
