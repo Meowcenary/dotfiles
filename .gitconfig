@@ -16,7 +16,7 @@
     pager       = true
 
 [core]
-    excludesfile = ~/.gitignore
+    excludesFile = /Users/Admin/.gitignore
 
 [alias]
     # basic command shortcuts
@@ -55,6 +55,8 @@
     rba = rebase --abort
     rbc = rebase --continue
     rbi = rebase --interactive 
+    plr  = pull --rebase
+    pl  = pull
 
     # log shortcuts
     lgo  = log --graph --oneline --decorate
