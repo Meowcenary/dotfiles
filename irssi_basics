@@ -1,0 +1,75 @@
+irssi has many ways to navigate between windows, and within a window.
+
+For this article, I am assuming that you do not use split windows. Also, whenever I mention the alt key, I mean alt, or meta, or option, or whatever works for you. There is a difference between them, but that’s beyond the scope of this post.
+
+If the alt key does not work properly for you, you have two options:
+
+Configure your OS or terminal application to send alt to irssi instead of to the OS or application (for example, make sure that alt + f does not open the File menu, but is sent to irssi).
+Instead of pressing alt plus another key at the same time, you can press escape, followed by the other key. For example, pressing alt and a at the same time is equivalent to pressing escape, releasing, and then pressing a.
+Navigating while typing
+
+Let’s start by what you can do while typing. These keystrokes change only what happens on the input line (the line where you type stuff).
+
+arrow left/right: move one character left or right.
+ctrl + arrow left/right: move one word left or right.
+ctrl + a or Home: move to start of line.
+ctrl + e or End: move to end of line.
+ctrl + w: remove from cursor to the beginning of the word the cursor is on.
+ctrl + k: remove from cursor to end of line.
+ctrl + u: remove the entire line.
+arrow up/down: previous/next command you typed.
+Navigating within a window
+
+There are keystrokes and commands to navigate within a single window. The total amount of text inside a single window is called the buffer.
+
+These are the keys:
+
+page-down or alt + n: scroll down half a page.
+page-up or alt + p: scroll up half a page.
+And these are the commands:
+
+/scrollback home: go to the first line of the buffer.
+/scrollback end: go to the last line of the buffer.
+/scrollback goto 13:05: scrolls back to 13:05.
+/scrollback goto -100: scrolls back 100 lines.
+/scrollback goto +50: scrolls forward 50 lines.
+You can use /sb instead of /scrollback to save time typing.
+
+Navigating between windows
+
+The most important thing to know about navigating between windows is that alt + a sends you to the window with the most recent, most important activity. Pressing it consecutively will first lead you through all windows that are pink in your activity bar, then all windows that are white, and then the rest. This is not entirely correct, but if you are able to correct me on this, you don’t need this article in the first place :-)
+
+Then there are alt + 1, alt + 2 , and so on. These take you directly to the window with that number. By default, the top 2 lines of your (qwerty) keyboard are bound that way, all the way up to alt + o, which takes you to window 19.
+
+Going to the next or previous window can be done by pressing ctrl + p or ctrl + n, or via alt + arrow left or alt + arrow right.
+
+Some commands to make your life easier:
+
+/window last: go to the window you were in before this one.
+/window goto <number>: go to the window with that number.
+/window goto <nickname>: go to the window with the query with <nickname>.
+/window goto <channel>: go to the window with the given channel.
+Changing navigation
+
+Personally, I like my home and end keys not to go to the beginning and end of the text line, but to the beginning and end of the buffer. I have accomplished this by doing the following:
+
+/bind end command /sb end
+/bind home command /sb home
+Also, having alt + 1 through alt + 0 and alt + q through alt + p is great if you have “only” 20 windows, but if you have more, what then? I’ve added windows 21 to 40, like this:
+
+/bind meta-a change_window 21
+/bind meta-s change_window 22
+And so on. I had to re-bind alt + a of course, alt + [, which is to the right of the p on my keyboard:
+
+/bind meta-[ active_window
+If you want to scroll up or down a different amount that half a page when pressing page-up or page-down, change the setting scroll_page_count.
+
+The command /window goto is very useful. However, it’s way too much typing. So, since I never use /w for /who, I’ve changed /w to /window goto:
+
+/alias w /window goto
+Finally, I got rather annoyed by how ctrl + z puts irssi in the background. I never ever want to do that. So, I wanted to bind ctrl + z to a useful command. There is a command that takes you to the window you were in before this one, so I bound that:
+
+/bind ^Z command window last
+This way, by pressing ctrl + z, I can keep toggling between two interesting windows.
+
+I hope this helps you to navigate around irssi easier and faster!

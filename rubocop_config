@@ -1,0 +1,42 @@
+# for now, this is a way to only check ruby files that have been changed
+# don't worry about fixing everything, it will take time so just try to fix
+# any files that you are currently editing
+git status --porcelain | cut -c4- | grep '.rb' | xargs rubocop
+
+# rubocop by default uses the ruby style guide found here
+https://github.com/bbatsov/ruby-style-guide
+
+#Config I hope to use and explanations for each style choice
+
+# based on this article: https://www.viget.com/articles/just-use-double-quoted-ruby-strings
+# there is no real performance gain from using single quotes in non-string-interpolation
+# situations so for the sake of consistency and because we use double strings a lot we are
+# going to ignore that style choice and just stick to only using double quotes for strings!
+
+Style/StringLiterals:  
+  EnforcedStyle: double_quotes
+  Enabled: true
+
+# No space makes the method definition shorter and differentiates
+# from a regular assignment.
+Style/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: no_space
+
+# Commonly used screens these days easily fit more than 80 characters.
+Metrics/LineLength:
+  Max: 120
+
+# The guiding principle of classes is SRP, SRP can't be accurately measured by LoC
+Metrics/ClassLength:
+  Max: 1500
+
+# Fail l is an alias of raise. Avoid aliases, it's more cognitive load for no gain.
+# The argument that fail should be used to abort the program is wrong too,
+# there's Kernel#abort for that.
+Style/SignalException:
+  EnforcedStyle: only_raise
+
+# No trailing space differentiates better from the block:
+# foo} means hash, foo } means block.
+Style/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space 
