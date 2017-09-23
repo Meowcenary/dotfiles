@@ -1,0 +1,19 @@
+{
+  "bootstrapped": true,
+  "in_process_packages":
+  [
+  ],
+  "installed_packages":
+  [
+    "Babel",
+    "BracketHighlighter",
+    "CursorRuler",
+    "EasyMotion",
+    "Package Control",
+    "SublimeCodeIntel",
+    "SublimeLinter",
+    "SublimeLinter-ruby",
+    "Syntax Highlighting for Sass",
+    "Theme - Brogrammer"
+  ]
+}
