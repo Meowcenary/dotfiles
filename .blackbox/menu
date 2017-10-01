@@ -1,0 +1,7 @@
+[begin]
+  [nop] (--------------)
+  [exec] (Xterm) {xterm}
+  [exec] (Firefox) {firefox}
+  [restart] (Restart)
+  [exit] (Exit)
+[end]

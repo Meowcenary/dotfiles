@@ -1,0 +1,10 @@
+#file must be enclosed with [begin] and [end] brackets
+[begin]
+  #each line follows a basic syntax of [command] (label) {data}
+  #if there is an error, it will show the basic menu with just 
+  #xterm, restart, and exit
+  [nop] (--------------)
+  [exec] (Xterm) {xterm}
+  [restart] (Restart)
+  [exit] (Exit)
+[end]
