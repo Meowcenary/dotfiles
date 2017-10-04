@@ -1,0 +1,11 @@
+-----------------------------
+What is the purpose of etc/default?
+-----------------------------
+source: https://askubuntu.com/questions/429592/what-is-the-purpose-of-etc-default
+
+/etc/default contains some parameters that the end user or administrator is likely to change, rather than embedding the values in the actual boot scripts.
+In this way, changes will persist even if you upgrade the package and the boot script is replaced.
+
+In debian, /etc/default/ is a directory of mostly empty files. The way it is meant to work is that each /etc/init.d/test script first sources /etc/default/test 
+before starting/stopping the test service. The purpose of the file is to provide extra options for starting the service, or override certain aspects of the
+service's startup.
