@@ -1,3 +1,10 @@
+At some point in the near future I'll need to reorganize things as I start
+filling the repo with more distro specific linux config files and scripts,
+but for now many of the new files, particularly extra readmes and
+anything related to x windows are all planned to go into an archlinux
+directory with everything else not relating enough to anything else
+to be worthy of a directory.
+
 .vimrc:
    uses vim-plug from here: https://github.com/junegunn/vim-plug
 
