@@ -1,0 +1,54 @@
+-------------------------------------------------
+General Sources
+-------------------------------------------------
+
+Unless the internet is out, in which case you're pretty screwed anyways, the archwiki is the goto for all things linux. Here are some pages relevant to configuring
+x11 based window managers.
+
+https://wiki.archlinux.org/index.php/Xinit
+https://wiki.archlinux.org/index.php/Display_manager#Session_list
+
+-------------------------------------------------
+What is the difference between .xinitrc , .xsession, and .xsessionrc
+-------------------------------------------------
+Source: https://unix.stackexchange.com/questions/281858/difference-between-xinitrc-xsession-and-xsessionrc , this answer is copied from there.
+
+~/.xinitrc is executed by xinit, which is usually invoked via startx. This program is executed after logging in: first you log in on a text console, then you start the 
+GUI with startx. The role of .xinitrc is to start the GUI part of the session, typically by setting some GUI-related settings such as key bindings (with xmodmap or 
+xkbcomp), X resources (with xrdb), etc., and to launch a session manager or a window manager (possibly as part of a desktop environment).
+
+~/.xsession is executed when you log in in graphical mode (on a display manager) and the display manager invokes the “custom” session type. (With the historical
+display manager xdm, .xsession is always executed, but with modern display managers that give the user a choice of session type, you usually need to pick 
+“custom” for .xsession to run.) Its role is both to set login-time parameters (such as environment variables) and to start the GUI session. A typical .xsession is...
+
+#!/bin/sh
+. ~/.profile
+. ~/.xinitrc
+
+~/.xsessionrc is executed on Debian (and derivatives such as Ubuntu, Linux Mint, etc.) by the X startup scripts on a GUI login, for all session types and (I think) 
+from all display managers. It's also executed from startx if the user doesn't have a .xinitrc, because in that case startx falls back on the same session startup 
+scripts that are used for GUI login. It's executed relatively early, after loading resources but before starting any program such as a key agent, a D-Bus daemon, 
+etc. It typically sets variables that can be used by later startup scripts. It doesn't have any official documentation that I know of, you have to dig into the source to 
+see what works.
+
+.xinitrc and .xsession are historical features of the X11 Window system so they should be available and have a similar behavior on all Unix systems. On the other 
+hand, .xsessionrc is a Debian feature and distributions that are not based on Debian don't have it unless they've implemented something similar.
+
+.xprofile is very similar to .xsessionrc, but it's part of the session startup script of GDM (the GNOME display manager), so it's only read if you log in with GDM.
+
+-------------------------------------------------
+How is this being used in the (currently) working Arch install?
+-------------------------------------------------
+
+Currently only blackbox window manager is installed. It's X window based (which is why im writing this out lol) and therefore uses .xinit and .xinitrc when it loads.
+There is currently no display manager, so that's all that needs to be worried about. 
+
+Blackbox is great for starting out, but it will likely be replaced by another window manager like openbox, awesome, or i3 relatively soon. All of these are also X 
+window based from what I can tell, so this and the other config files will hopefully help figure everything out.
+
+-------------------------------------------------
+What is .Xauthority and what does it do?
+-------------------------------------------------
+
+Source: https://docs.citrix.com/en-us/linux-virtual-delivery-agent/7-12/configuration/configure-xauthority.html
+
