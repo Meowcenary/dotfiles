@@ -1,5 +1,6 @@
 "File type tab settings
 autocmd Filetype ruby setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype python setlocal tabstop=4 shiftwidth=4 expandtab
 
 " NERDTree config, set leader
 let  mapleader = '\'
@@ -23,6 +24,10 @@ set cursorcolumn
 " set color for vertical bar
 highlight LineNr ctermfg = grey
 
+" set color scheme
+colorscheme slate
+"colorscheme elflord
+
 " required to have airline plugin display
 set laststatus=2
 
@@ -38,5 +43,4 @@ call plug#begin()
     Plug 'bronson/vim-trailing-whitespace'
     Plug 'vim-airline/vim-airline'
     Plug 'scrooloose/syntastic'
-    Plug 'valloric/youcompleteme'
 call plug#end()
