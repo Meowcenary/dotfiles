@@ -12,9 +12,28 @@ let g:syntastic_mode_map = { 'mode': 'passive',
                           \ 'passive_filetypes': [] }
 let g:syntastic_auto_loc_list=1
 
-nnoremap <silent> <F5> :SyntasticCheck<CR>
-nnoremap <silent> <F4> :lclose<cr>
-nnoremap <silent> <F3> :SyntasticReset<CR>
+" by default only location list only updated when
+" :Errors command is run with the below command
+" always update location list when checkers run
+let g:syntastic_always_populate_loc_list=1
+
+" nmap <leader>c :SyntasticCheck<cr>
+" nnoremap <silent> <F5> :SyntasticCheck<CR>
+" nnoremap <silent> <F4> :lclose<CR>
+" nnoremap <silent> <F3> :SyntasticReset<CR>
+
+" syntastic file checkers, view a full list of file checkers with :help syntastic-checkers
+" a checker listed in [] brackets will tell syntastic what to use automatically on :SyntasticCheck
+
+" the syntax for each checker follows below pattern
+" let g:syntastic_<filetype>_checkers = ['checker-name']
+" to tell syntastic what executable version to run provide path
+" let g:syntastic_ruby_ruby_exec = 'path/to/ruby/version'
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_ruby_ruby_exec = '~/.rvm/rubies/ruby-2.3.0/bin/ruby'
+
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_python_exec = '/usr/bin/python3'
 
 " config options for vanilla vim
 set nu
@@ -26,7 +45,9 @@ highlight LineNr ctermfg = grey
 
 " set color scheme
 colorscheme slate
-"colorscheme elflord
+
+" other color schemes
+" colorscheme elflord
 
 " required to have airline plugin display
 set laststatus=2
