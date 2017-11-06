@@ -40,6 +40,11 @@ set nu
 set cursorline
 set cursorcolumn
 
+" nohlsearch or noh command hides highlighting
+set hlsearch
+" <Ctrl-l> redraws the screen and removes and search highlighting
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+
 " set color for vertical bar
 highlight LineNr ctermfg = grey
 
