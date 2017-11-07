@@ -13,17 +13,17 @@ sudo apt-get install \
 rm -rf ~/Documents
 rm -rf ~/Public
 rm -rf ~/Templates
-rm -rf ~/Videos
-rm -rf ~/Music
-rm -rf ~/examples.desktop
+# rm -rf ~/Videos
+# rm -rf ~/Music
+# rm -rf ~/examples.desktop
 
 # copy dotfiles, clone dotfiles to /data first
 shopt -s dotglob
 cp -ar ./data/dotfiles/* ~
 
 # setup workspace
-mkdir ~/Development
-mkdir ~/Development/Python
-mkdir ~/Development/Ruby
-mkdir ~/Development/CPP
+mkdir ~/Programming
+mkdir ~/Programming/Python
+mkdir ~/Programming/Ruby
+mkdir ~/Programming/CPP
 
