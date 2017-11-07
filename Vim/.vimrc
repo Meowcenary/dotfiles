@@ -1,17 +1,44 @@
+" THINGS TO ADD
+" - need syntastic checker and runtime for javascript and jsx, probably ESLint
+" - autocomplete for ruby, javasript, jsx, yaml, and other rails related stuff
+"   for now you complete me is promising, but kind of hard to install
+" - decide if fugitive is even worthwhile or not (probably not)
+"
 " The hopes of this configuration are to provide these features...
-" - A way to navigate files with NERDTree
-" - Faster movement with existing VIM shortcuts through EasyMotion
-" - Highligthing and clearing search keywords using vanilla VIM settings
+" - A way to visualize and navigate a file structure with NERDTree
+" - Quickly search for files in structure and open buffers with ctrlp
+" - Search for phrases with ackvim
+" - Faster movement with existing vim shortcuts through EasyMotion
+" - Highlighting and clearing search keywords using vanilla vim settings
+"     and vim-polyglot
 " - Syntax linting / code smell detection with syntastic
 " - Remove whitespace on save / set tabs to spaces by filetype
-" - Quick file navigation with ctrl+p (which is both a plugin
-"     and the command used to invoke it
 " - Easy commenting with universal shortcut for all files
+" - Status bar using airline
+"
+" These are the most frequently used shortcuts, each key is separated with
+" a '-' but should be entered as a chord or in quick sequence (e.g g-c-c means
+" click g and then c twice)
+"
+" g-c-c : toggle commenting on a line or area
+" \-t : open NERD TREE
+" \-\ <some motion key> : invoke easy motion in direction of motion key
+" ctrl-p : open ctrlp in file search
+" ctrl-b : open ctrlp in buffer search
+" f5 : run syntastic checkers
+" f4 : open synatstic error buffer
+" f3 : close synatstic error buffer
+" f2 : clear (reset) syntastic error checkers
+" :Ack [options] {pattern} [{directories}] : search recursively through
+"     directories starting at the current working directory by default
 
 " from better-whitespace, automatically strip trailing whitespace on save
 autocmd BufEnter * EnableStripWhitespaceOnSave
 
-" file type tab settings
+" Using with vim-polyglot to highlight syntax on nearly all filetypes
+syntax on
+
+" file type tab settings, these might be handled by vim-polyglot too
 autocmd Filetype ruby setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd Filetype python setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd Filetype javascript setlocal tabstop=4 shiftwidth=4 expandtab
@@ -46,7 +73,7 @@ nnoremap <silent> <F2> :SyntasticReset<CR>
 
 " syntastic file checkers, view a full list of file checkers with :help syntastic-checkers
 " a checker listed in [] brackets will tell syntastic what to use automatically on :SyntasticCheck
-
+"
 " the syntax for each checker follows below pattern
 " let g:syntastic_<filetype>_checkers = ['checker-name']
 " to tell syntastic what executable version to run provide path
@@ -102,6 +129,7 @@ set laststatus=2
 " to remove a plugin, delete from this list and run :PlugClean
 " to upgrade existing plugins run :PlugUpdate
 " to upgrade vimplug run :PlugUpgrade
+" to view existing plugin statuses run :PlugStatus
 call plug#begin()
     Plug 'scrooloose/nerdtree'
     Plug 'easymotion/vim-easymotion'
@@ -110,6 +138,8 @@ call plug#begin()
     Plug 'scrooloose/syntastic'
     Plug 'kien/ctrlp.vim'
     Plug 'tomtom/tcomment_vim'
+    Plug 'mileszs/ack.vim'
+    Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " Plugins that have been previously used
