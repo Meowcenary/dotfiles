@@ -1,0 +1,34 @@
+The basic process is identifying what plugins are going slowly
+and what is causing them to behave that way
+
+To get a log (stored in profile.log of your working dir) of
+what function calls are being made run the below commands
+in vim
+
+	:profile start profile.log
+	:profile func *
+	:profile file *
+	" At this point do slow actions
+	:profile pause
+	:noautocmd qall!
+
+profile.log will have formatted output showing what functions were
+called while the log was running so to see anything useful you'll
+need to trigger the plugin function calls you think are moving slow
+
+often times things that work well in small files and file sets do
+poorly in really big sets if you lower the amount of content that
+is open or being searched often there are big performance increases
+e.g opening a single project directory for ctrlp to search through,
+     not opening a directory of projects that floods what it needs
+     to index
+
+Another crude and effective way to solve this is by replicating
+the situation that caused things to slow down, turning off a suspect
+plugin, and then triggering the problem to see if things have sped up
+or not
+
+Finally if the issue is still persisting it might be worth checking
+online to see if anyone has encountered similar issues with any of
+the plugins in your vimrc
+
