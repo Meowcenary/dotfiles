@@ -1,0 +1,26 @@
+# A running list of vim shortcuts and techniques
+
+--------------------------
+Find And Replace Vim Style
+---------------------------
+
+A common problem in programming is needing to find some word
+and then replace it with another word either across the entire
+file or in certain instances.
+
+# this might be good to move into a hotkey command / macro
+To replace across the entire file run this:
+    :%s/old_word_to_replace/new_word/g
+
+:s is the substitute command, *I think* % is an argument saying within
+the current file
+
+To replace individual instances of a word follow this workflow:
+    - search for the word or phrase you want to replace with '/' followed by the
+        word to find e.g /this_is_an_example_search
+    - hit 'n' or '*' to search down and 'N' or '#' to search back
+    - at the first instance to replace, use 'cw' and then type the replacement
+        word or phrase
+    - search forward or back and then press '.' to repeat the replacement command
+        on whatever word or phrase you're currently hovering over
+

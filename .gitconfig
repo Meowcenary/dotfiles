@@ -17,6 +17,7 @@
 
 [core]
     excludesFile = /Users/Admin/.gitignore
+	editor = /usr/local/bin/vim
 
 [alias]
     # basic command shortcuts
@@ -39,7 +40,7 @@
     # diff shortcuts
     d   = diff --patience
     dw  = diff --patience --ignore-all-space
-    dc  = diff --patience --cached 
+    dc  = diff --patience --cached
     dcw = diff --patience --cached --ignore-all-space
     d1  = diff --patience HEAD~1
     d2  = diff --patience HEAD~2
@@ -54,7 +55,7 @@
     rb  = rebase
     rba = rebase --abort
     rbc = rebase --continue
-    rbi = rebase --interactive 
+    rbi = rebase --interactive
     plr  = pull --rebase
     pl  = pull
 
@@ -66,5 +67,5 @@
 
     #push shortcuts
     p  = push
-    pf = push --force-with-lease 
-    
+    pf = push --force-with-lease
+
