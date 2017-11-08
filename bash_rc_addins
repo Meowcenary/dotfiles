@@ -1,25 +1,33 @@
-#this will force the terminal to display in 256 color if available
+# this will force the terminal to display in 256 color if available
 if [ -n "$DISPLAY" -a "$TERM" == "xterm" ]; then
     export TERM=xterm-256color
 fi
 
-#if you're ever in a blank bashrc, put aliases in here
+# if you're ever in a blank bashrc, create bash_aliases and put aliases there
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-#some helpful aliases (baked into ubuntu :O )
+# some helpful aliases (included by default in some distros)
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-#this needs to be added for rbenv to automatically go to the version
-#you have set
+# 11/08/17 - I've gone back to primarily using RVM for my ruby manager
+# when I want something I know how to fix and chruby fo
+#
+# this needs to be added for rbenv to automatically go to the version
+# you have set
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# eval "$(rbenv init -)"
 
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
-#add this to set caps lock to ctrl
-#there is probably a better file than bashrc
-#but for now it's a simple way to get it done
+# add this to set caps lock to ctrl
+# there is probably a better file than bashrc
+# but for now it's a simple way to get it done
 setxkbmap -option caps:ctrl_modifier
+
+# this is the status bar I like to use in my bashrc
+# <> brackets denote a variable
+# <current_working_dircectory>:<user_name>[<current_git_branch_status>]
+export PS1="\[\e[36m\]\w\[\e[m\]:\[\e[31m\]\u\[\e[m\]\[\e[33m\]\`parse_git_branch\`\[\e[m\]\[\e[35m\]\\$\[\e[m\] "
+
