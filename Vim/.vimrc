@@ -31,6 +31,11 @@
 " f2 : clear (reset) syntastic error checkers
 " :Ack [options] {pattern} [{directories}] : search recursively through
 "     directories starting at the current working directory by default
+"     be careful when running this on a large directory in a vim buffer
+" :Git [git command] : due to fugitive this will run the git command even
+"     with the aliases from your gitconfig and spit it out in a terminal
+"     there are some other commands specific to fugitive, but  I dont use
+"     them so I wont go into that. Read more here: https://github.com/tpope/vim-fugitive
 
 " from better-whitespace, automatically strip trailing whitespace on save
 autocmd BufEnter * EnableStripWhitespaceOnSave
@@ -140,6 +145,7 @@ call plug#begin()
     Plug 'tomtom/tcomment_vim'
     Plug 'mileszs/ack.vim'
     Plug 'sheerun/vim-polyglot'
+    Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " Plugins that have been previously used
