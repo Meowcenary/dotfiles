@@ -1,6 +1,3 @@
-# A running list of vim shortcuts and techniques
-
---------------------------
 Find And Replace Vim Style
 ---------------------------
 
