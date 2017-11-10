@@ -13,8 +13,9 @@
 "     and vim-polyglot
 " - Syntax linting / code smell detection with syntastic
 " - Remove whitespace on save / set tabs to spaces by filetype
-" - Easy commenting with universal shortcut for all files
+" - Easy commenting with universal command for all filetypes
 " - Status bar using airline
+" - Git integration to vim and airline status bar with fugitive
 "
 " These are the most frequently used shortcuts, each key is separated with
 " a '-' but should be entered as a chord or in quick sequence (e.g g-c-c means
@@ -36,6 +37,15 @@
 "     with the aliases from your gitconfig and spit it out in a terminal
 "     there are some other commands specific to fugitive, but  I dont use
 "     them so I wont go into that. Read more here: https://github.com/tpope/vim-fugitive
+" ctrl-w : this is the opening command for commands invovling buffer splits on a tab
+"     the below commands follow the initial ctrl-w
+"
+"     ctrl-w : cycle through buffers
+"     h, j, k, l : move to the nearest tab in the vim movement key direction specified
+"     s : open a horizontal split
+"     v : open a vertical split
+"     c : close the current buffer
+"     o : close the other buffer leaving just the current one if there are several open
 
 " from better-whitespace, automatically strip trailing whitespace on save
 autocmd BufEnter * EnableStripWhitespaceOnSave
@@ -48,9 +58,20 @@ autocmd Filetype ruby setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd Filetype python setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd Filetype javascript setlocal tabstop=4 shiftwidth=4 expandtab
 
-" NERDTree config, set leader
+" NERDTree config
+" defaults left in
+" gt : move right one tab
+" gT : move left one tab
+" <number>gt : move to the <number> tab
+"               e.g 4gt goes to tab 4
+
+" set leader and invocation for side file tree view
 let  mapleader = '\'
 nmap <leader>t :NERDTree<cr>
+
+" quickly move to first or last tab
+nnoremap <silent> tl :tablast<CR>
+nnoremap <silent> tf :tabfirst<CR>
 
 " syntastic config options
 " syntastic is not too complicated but you should really read up on what
@@ -110,7 +131,7 @@ set cursorcolumn
 " nohlsearch or noh command hides highlighting
 set hlsearch
 
-" <Ctrl-l> redraws the screen and removes and search highlighting
+" <Ctrl-l> redraws the screen removing search highlighting and snytastic markings
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 " set color for vertical bar
@@ -129,6 +150,10 @@ colorscheme badwolf
 " required to have airline plugin display
 set laststatus=2
 
+" [Formatting Note] this would probably make more sense at the top of the file
+"                   so that anyone could see what plugins are installed before seeing how
+"                   how they're all configured
+"
 " plugins managed with vimplug: https://github.com/junegunn/vim-plug
 " to install run, after installing vimplug, run :PlugInstall
 " to remove a plugin, delete from this list and run :PlugClean
@@ -148,12 +173,10 @@ call plug#begin()
     Plug 'tpope/vim-fugitive'
 call plug#end()
 
-" Plugins that have been previously used
+" Plugins and functions that have been previously used
 "
 " Plug 'bronson/vim-trailing-whitespace'
 " Plug 'valloric/youcompleteme'
-"
-" Deprecated function replaced by tcomment_vim
 "
 " function is in vcomments.vim , config here
 " source ~/vcomments.vim
