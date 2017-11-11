@@ -1,21 +1,17 @@
-" THINGS TO ADD
-" - need syntastic checker and runtime for javascript and jsx, probably ESLint
-" - autocomplete for ruby, javasript, jsx, yaml, and other rails related stuff
-"   for now you complete me is promising, but kind of hard to install
-" - decide if fugitive is even worthwhile or not (probably not)
-"
 " The hopes of this configuration are to provide these features...
-" - A way to visualize and navigate a file structure with NERDTree
-" - Quickly search for files in structure and open buffers with ctrlp
-" - Search for phrases with ackvim
-" - Faster movement with existing vim shortcuts through EasyMotion
-" - Highlighting and clearing search keywords using vanilla vim settings
+" - a way to visualize and navigate a file structure with NERDTree
+" - quickly search for files in structure and open buffers with ctrlp
+" - search for phrases with ackvim
+" - faster movement with existing vim shortcuts through EasyMotion
+" - highlighting and clearing search keywords using vanilla vim settings
 "     and vim-polyglot
-" - Syntax linting / code smell detection with syntastic
-" - Remove whitespace on save / set tabs to spaces by filetype
-" - Easy commenting with universal command for all filetypes
-" - Status bar using airline
-" - Git integration to vim and airline status bar with fugitive
+" - syntax linting / code smell detection with syntastic
+" - remove whitespace on save / set tabs to spaces by filetype
+" - easy commenting with universal command for all filetypes
+" - status bar using airline
+" - git integration to vim and airline status bar with fugitive
+" - autocomplete with supertab
+"
 "
 " These are the most frequently used shortcuts, each key is separated with
 " a '-' but should be entered as a chord or in quick sequence (e.g g-c-c means
@@ -23,6 +19,12 @@
 "
 " g-c-c : toggle commenting on a line or area
 " \-t : open NERD TREE
+" gt : move right one tab
+" gT : move left one tab
+" <number>gt : move to the <number> tab
+"               e.g 4gt goes to tab 4
+" tf : go to the first tab
+" tl : go to the last tab
 " \-\ <some motion key> : invoke easy motion in direction of motion key
 " ctrl-p : open ctrlp in file search
 " ctrl-b : open ctrlp in buffer search
@@ -46,24 +48,87 @@
 "     v : open a vertical split
 "     c : close the current buffer
 "     o : close the other buffer leaving just the current one if there are several open
+"
+"
+" plugins managed with vimplug: https://github.com/junegunn/vim-plug
+" to install run, after installing vimplug, run :PlugInstall
+" to remove a plugin, delete from this list and run :PlugClean
+" to upgrade existing plugins run :PlugUpdate
+" to upgrade vimplug run :PlugUpgrade
+" to view existing plugin statuses run :PlugStatus
+" must use single quotes when specifying a plugin
+call plug#begin('~/.vim/plugged')
+    Plug 'scrooloose/nerdtree'
+    Plug 'easymotion/vim-easymotion'
+    Plug 'ntpeters/vim-better-whitespace'
+    Plug 'vim-airline/vim-airline'
+    Plug 'scrooloose/syntastic'
+    Plug 'kien/ctrlp.vim'
+    Plug 'tomtom/tcomment_vim'
+    Plug 'mileszs/ack.vim'
+    Plug 'sheerun/vim-polyglot'
+    Plug 'tpope/vim-fugitive'
+    Plug 'ervandew/supertab'
+call plug#end()
 
-" from better-whitespace, automatically strip trailing whitespace on save
-autocmd BufEnter * EnableStripWhitespaceOnSave
+" Plugins and functions that have been previously used
+"
+" Plug 'bronson/vim-trailing-whitespace'
+" Plug 'valloric/youcompleteme'
+"
+" function is in vcomments.vim , config here
+" source ~/vcomments.vim
+" map <C-a> :call Comment()<CR>
+" map <C-b> :call Uncomment()<CR>
+
+" ------------------
+" vanilla vim config
+" ------------------
 
 " Using with vim-polyglot to highlight syntax on nearly all filetypes
 syntax on
+
+" from better-whitespace, automatically strip trailing whitespace on save
+autocmd BufEnter * EnableStripWhitespaceOnSave
 
 " file type tab settings, these might be handled by vim-polyglot too
 autocmd Filetype ruby setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd Filetype python setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd Filetype javascript setlocal tabstop=4 shiftwidth=4 expandtab
 
-" NERDTree config
-" defaults left in
-" gt : move right one tab
-" gT : move left one tab
-" <number>gt : move to the <number> tab
-"               e.g 4gt goes to tab 4
+" show number lines on side
+set nu
+
+" horizontal and vertical highlighting respectively
+set cursorline
+set cursorcolumn
+
+" nohlsearch or noh command hides highlighting
+set hlsearch
+
+" as you type a search, go to the text that matches
+set incsearch
+
+" <Ctrl-l> redraws the screen removing search highlighting and snytastic markings
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+
+" set color for vertical bar
+highlight LineNr ctermfg = grey
+
+" set color scheme, currently using custom badwolf color scheme
+" install custom color schemes to ~/.vim/colors/<color_name>.vim
+" DO NOT use plugins for colors, just download the color scheme
+colorscheme badwolf
+
+" other color schemes from default vim
+" colorscheme elflord
+" colorscheme slate
+" colorscheme industry
+
+" ---------------
+" nerdtree config
+"---------------
+"
 
 " set leader and invocation for side file tree view
 let  mapleader = '\'
@@ -73,7 +138,10 @@ nmap <leader>t :NERDTree<cr>
 nnoremap <silent> tl :tablast<CR>
 nnoremap <silent> tf :tabfirst<CR>
 
-" syntastic config options
+" ----------------
+" syntastic config
+" ----------------
+
 " syntastic is not too complicated but you should really read up on what
 " all of these configuration options are doing if you ever forget
 " IMPORTANT: you have to actually install all the syntax checkers you want
@@ -110,6 +178,10 @@ let g:syntastic_ruby_ruby_exec = '/home/eric/.rubies/ruby-2.3.0/bin/ruby'
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_python_exec = '/usr/bin/python3'
 
+" ------------
+" ctrlp config
+" ------------
+
 " set ctrlp to open files in new tabs on carriage return (clicking enter)
 " normal behavior is for file to open in split buffer also possible to open
 " file in new tab without this config by using <Ctrl-p> and then <Ctrl-t>
@@ -122,64 +194,12 @@ let g:ctrlp_prompt_mappings = {
 " remap ctrl b from scroll visible buffer back one page
 " to open ctrlp in buffer mode
 nnoremap <silent> <C-b> :CtrlPBuffer<CR><C-b>
+nnoremap <silent> <C-m> :CtrlPMRUFiles<CR><C-m>
 
-" config options for vanilla vim
-set nu
-set cursorline
-set cursorcolumn
+" ----
+" Misc
+" ----
 
-" nohlsearch or noh command hides highlighting
-set hlsearch
-
-" <Ctrl-l> redraws the screen removing search highlighting and snytastic markings
-nnoremap <silent> <C-l> :nohl<CR><C-l>
-
-" set color for vertical bar
-highlight LineNr ctermfg = grey
-
-" set color scheme, currently using custom badwolf color scheme
-" install custom color schemes to ~/.vim/colors/<color_name>.vim
-" DO NOT use plugins for colors, just download the color scheme
-colorscheme badwolf
-
-" other color schemes for different computers
-" colorscheme elflord
-" colorscheme slate
-" colorscheme industry
-
-" required to have airline plugin display
+" required to be at end of vimrc to have airline plugin display
 set laststatus=2
-
-" [Formatting Note] this would probably make more sense at the top of the file
-"                   so that anyone could see what plugins are installed before seeing how
-"                   how they're all configured
-"
-" plugins managed with vimplug: https://github.com/junegunn/vim-plug
-" to install run, after installing vimplug, run :PlugInstall
-" to remove a plugin, delete from this list and run :PlugClean
-" to upgrade existing plugins run :PlugUpdate
-" to upgrade vimplug run :PlugUpgrade
-" to view existing plugin statuses run :PlugStatus
-call plug#begin()
-    Plug 'scrooloose/nerdtree'
-    Plug 'easymotion/vim-easymotion'
-    Plug 'ntpeters/vim-better-whitespace'
-    Plug 'vim-airline/vim-airline'
-    Plug 'scrooloose/syntastic'
-    Plug 'kien/ctrlp.vim'
-    Plug 'tomtom/tcomment_vim'
-    Plug 'mileszs/ack.vim'
-    Plug 'sheerun/vim-polyglot'
-    Plug 'tpope/vim-fugitive'
-call plug#end()
-
-" Plugins and functions that have been previously used
-"
-" Plug 'bronson/vim-trailing-whitespace'
-" Plug 'valloric/youcompleteme'
-"
-" function is in vcomments.vim , config here
-" source ~/vcomments.vim
-" map <C-a> :call Comment()<CR>
-" map <C-b> :call Uncomment()<CR>
 
