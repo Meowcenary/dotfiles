@@ -95,6 +95,9 @@ autocmd BufEnter * EnableStripWhitespaceOnSave
 autocmd Filetype ruby setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd Filetype python setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd Filetype javascript setlocal tabstop=4 shiftwidth=4 expandtab
+autocmd Filetype json setlocal tabstop=4 shiftwidth=4 expandtab
+autocmd Filetype text setlocal tabstop=4 shiftwidth=4 expandtab
+
 
 " show number lines on side
 set nu
@@ -194,7 +197,6 @@ let g:ctrlp_prompt_mappings = {
 " remap ctrl b from scroll visible buffer back one page
 " to open ctrlp in buffer mode
 nnoremap <silent> <C-b> :CtrlPBuffer<CR><C-b>
-nnoremap <silent> <C-m> :CtrlPMRUFiles<CR><C-m>
 
 " ----
 " Misc
