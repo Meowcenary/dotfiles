@@ -1,0 +1,346 @@
+@import 'global/variables';
+
+/******************************************************
+** Visibility
+******************************************************/
+
+.transparent {
+  opacity: 0 !important;
+}
+
+.opaque {
+  opacity: 1 !important;
+}
+
+.invisible {
+  visibility: hidden !important;
+}
+
+a.underlined:hover {
+  text-decoration: underline;
+  color: rgb(125, 125, 125);
+}
+
+.inline {
+  display: inline !important;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.hoverchange {
+  -webkit-transition: .2s all ease;
+  -moz-transition: .2s all ease;
+  -moz-transition: .2s all ease;
+  -ms-transition: .2s all ease;
+  -o-transition: .2s all ease;
+  transition: .2s all ease;
+
+  &.opacity:hover {
+    opacity: .5;
+  }
+}
+
+
+/* styles for '...' */
+.truncate-text {
+  /* hide text if it more than N lines  */
+  overflow: hidden;
+  /* for set '...' in absolute position */
+  position: relative;
+  /* use this value to count block height */
+  line-height: 1.2em;
+  /* max-height = line-height (1.2) * lines max number (3) */
+  max-height: 5.75em;
+  /* fix problem when last visible word doesn't adjoin right side  */
+  text-align: justify;
+  /* place for '...' */
+  margin-right: -1em;
+  padding-right: 1em;
+
+  /* create the ... */
+  &:before {
+    /* points in the end */
+    content: '...';
+    /* absolute position */
+    position: absolute;
+    /* set position to right bottom corner of block */
+    right: 0;
+    bottom: 0;
+  }
+
+  /* hide ... if we have text, which is less than or equal to max lines */
+  &:after {
+    /* points in the end */
+    content: '';
+    /* absolute position */
+    position: absolute;
+    /* set position to right bottom corner of text */
+    right: 0;
+    /* set width and height */
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    /* bg color = bg color under block */
+    background: white;
+  }
+}
+
+/******************************************************
+** Custom utilities
+******************************************************/
+
+.float-right {
+  float: right !important;
+}
+
+.float-left {
+  float: left !important;
+}
+
+.height-fill {
+  height: 100%;
+}
+
+.clear-margin {
+  margin: 0 !important;
+}
+
+.clear {
+  clear: both !important;
+}
+
+.vertical-align {
+  vertical-align: middle;
+}
+
+img {
+  -webkit-transition: .25s all ease;
+  -moz-transition: .25s all ease;
+  -moz-transition: .25s all ease;
+  -ms-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+
+  &.desaturate {
+    -webkit-filter: grayscale(1);
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+  }
+
+  &.invert {
+    -webkit-filter: invert(1);
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+  }
+
+  &.filter-to-black {
+    -webkit-filter: grayscale(1) brightness(20%);
+    -webkit-filter: grayscale(100%) brightness(20%);
+    filter: grayscale(100%) brightness(20%);
+  }
+
+  &.filter-to-white {
+    -webkit-filter: grayscale(1) brightness(0%) invert(1);
+    -webkit-filter: grayscale(100%) brightness(0%) invert(100%);
+    filter: grayscale(100%) brightness(0%) invert(100%);
+  }
+
+}
+
+/******************************************************
+**  Spacers and padding
+/******************************************************/
+
+$directions: 'top','bottom', 'left', 'right';
+
+@for $i from 0 through 12 {
+  .space-above-#{$i} {
+    margin-top: #{$i}em !important;
+  }
+
+  .space-below-#{$i} {
+    margin-bottom: #{$i}em !important;
+  }
+
+  .pad-#{$i} {
+    padding: #{$i}em !important;
+  }
+
+  @each $direction in $directions {
+    .space-#{$direction}-#{$i} {
+      margin-#{$direction}: #{$i}em !important;
+    }
+
+    .pad-#{$direction}-#{$i} {
+      padding-#{$direction}: #{$i}em !important;
+    }
+  }
+}
+
+.row.form .columns {
+  padding: 0 .25em !important;
+}
+
+.border-right {
+  border-right: 1px solid rgb(200, 200, 200);
+}
+
+/******************************************************
+** Margins
+******************************************************/
+
+.margin-horz-none {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/******************************************************
+** Box styling
+******************************************************/
+
+.radius {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/******************************************************
+** Shapes
+******************************************************/
+
+.circle-metric {
+  width: 15rem;
+  height: 15rem;
+  text-align: center;
+  border-radius: 50%;
+  border: 2px dotted white;
+}
+
+.circle-metric i {
+  font-size: 5rem;
+}
+
+.circle-metric-description {
+  padding: 2rem 1rem;
+  line-height: 1.2;
+}
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid white;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 15px solid white;
+}
+
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+
+  border-left: 15px solid white;
+}
+
+.arrow-left {
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 15px solid white;
+}
+
+.chevron-down {
+  position: absolute;
+  margin: auto;
+  top: -70px;
+  left: 0;
+  right: 0;
+  width: 137px;
+  height: 137px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  border-right: 5px solid white;
+  border-bottom: 5px solid white;
+}
+
+
+
+// Block Grid
+// Technique adapted from Foundation 5 for Bootstrap 3.
+// https://github.com/zurb/foundation/blob/f755d8704123f86c281ede0b171881e2672f150d/scss/foundation/components/_block-grid.scss
+// Original LESS Version by Christopher Mitchell (https://gist.github.com/ChrisTM)
+// Converted to SCSS by Rasmus Jürs (https://github.com/Jursdotme)
+
+[class*="block-grid-"] {
+  display: block;
+  // margin: 0 -($grid-gutter-width/2);
+  padding: 0;
+
+  .block-grid-item {
+    position: relative;
+    display: inline;
+    margin: 0;
+    padding: ($grid-gutter-width/2);
+    height: auto;
+    float: left;
+    list-style: none;
+  }
+
+  &.wide {
+    .block-grid-item {
+      padding: ($grid-gutter-width/6);
+    }
+  }
+
+}
+
+
+@mixin block-grid ($per-row) {
+  & > .block-grid-item {
+    width: (100%/$per-row);
+
+    $nth-equation: #{$per-row}n+'+'+1;
+
+    &:nth-of-type(n) {
+      clear: none;
+    }
+    &:nth-of-type(#{$nth-equation}) {
+      clear: both;
+    }
+  }
+}
+
+@mixin block-grids($size) {
+  @for $i from 1 through 12 {
+    .block-grid-#{$size}-#{$i}  {
+      @include block-grid($i);
+    }
+  }
+}
+
+@include block-grids(xs);
+@media (min-width: $screen-sm-min) { @include block-grids(sm) }
+@media (min-width: $screen-md-min) { @include block-grids(md) }
+@media (min-width: $screen-lg-min) { @include block-grids(lg) }
