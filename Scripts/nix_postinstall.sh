@@ -10,7 +10,7 @@ sudo apt-get install \
 	openbox obconf feh tint2
 
 # remove unwanted default folders
-rm -rf ~/Documents
+#rm -rf ~/Documents
 rm -rf ~/Public
 rm -rf ~/Templates
 # rm -rf ~/Videos
@@ -26,4 +26,3 @@ mkdir ~/Programming
 mkdir ~/Programming/Python
 mkdir ~/Programming/Ruby
 mkdir ~/Programming/CPP
-
