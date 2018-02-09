@@ -1,4 +1,4 @@
-" The hopes of this configuration are to provide these features...
+"   this configuration provides the following features
 " - a way to visualize and navigate a file structure with NERDTree
 " - quickly search for files in structure and open buffers with ctrlp
 " - search for phrases with ackvim
@@ -93,11 +93,11 @@ autocmd BufEnter * EnableStripWhitespaceOnSave
 
 " file type tab settings, these might be handled by vim-polyglot too
 autocmd Filetype ruby setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype haml setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd Filetype python setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd Filetype javascript setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd Filetype json setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd Filetype text setlocal tabstop=4 shiftwidth=4 expandtab
-
 
 " show number lines on side
 set nu

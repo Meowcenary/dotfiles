@@ -32,6 +32,7 @@
 #    (G) time stamp with month, hour, minute
 #    (H) the file's name
 alias ll='ls -AFGhl'
+alias lll='ls -AFGhl | less'
 alias la='ls -ACFG'
 alias l='ls -CFG'
 
