@@ -66,10 +66,6 @@ alias ds='df -H'
 # ack - alternative to grep that should NOT be installed by default
 alias hs='history | grep'
 
-# *** This should be removed after the new function is tested***
-# update this to check if file extension is .tar or .tar.gz and
-# then use proper unarchive command
-#
 # tar - archive/unarchive groups of files similar to zip
 # -x extract a tar ball
 # -z decompress and extract the contents of a tar.gz file
@@ -77,10 +73,6 @@ alias hs='history | grep'
 # -v verbose output, show progress while extracting
 # -f provide an archive or a tarball at the end of the command
 #    e.g tar -f some_tarball.tar
-alias untar='tar -xvf'
-alias untargz='tar -xzvf'
-alias untarbz='tar -xjvf'
-# *** This should be removed after the new function is tested***
 
 ### ExtendMed
 
