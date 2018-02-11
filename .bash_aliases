@@ -66,6 +66,13 @@ alias ds='df -H'
 # ack - alternative to grep that should NOT be installed by default
 alias hs='history | grep'
 
+# openvpn as the name implies is the command to control openvpn
+# the --config flag takes a file path to an openvpn config file
+# in .ovpn format
+# for some reason the command has to run with sudo, probably
+# because it has to access network controls
+alias vpn='sudo openvpn --config ~/openvpn/packer.ovpn'
+
 # tar - archive/unarchive groups of files similar to zip
 # -x extract a tar ball
 # -z decompress and extract the contents of a tar.gz file
