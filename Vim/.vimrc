@@ -48,7 +48,8 @@
 "     v : open a vertical split
 "     c : close the current buffer
 "     o : close the other buffer leaving just the current one if there are several open
-"
+" ctrl-g : show the current file's path RELATIVE to the working directory for vim
+"          1 : entered before the command, will show the FULL file path
 "
 " plugins managed with vimplug: https://github.com/junegunn/vim-plug
 " to install run, after installing vimplug, run :PlugInstall
