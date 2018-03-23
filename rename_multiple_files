@@ -1,0 +1,30 @@
+From IRC:
+
+How do I recursively rename all ./**/*.foo to ./**/*.bar ?
+
+`find . -name '*.foo' | xargs mv ONE TWO` where ONE would be the path from find and TWO would be that same path with `.foo` replaced by `.bar`
+
+Also, there is a perl script called rename you can use
+
+The below is not accurate and mostly speculation. I need to figure out what's really going on with that code at some point.
+###################################################################################################
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+From StackOverflow:
+
+Two slightly different methods to rename files using find and mv with regular expressions
+-RE is abbreviation for Regular Expression
+
+This is the general template for this first method:
+
+find . -type f -name "RE for filename" -exec bash -c 'f="$1"; g="${f/RE text to replace/}"; mv -- "$f" "$g"' _ '{new text to replace old text}' \;
+
+This is an implementation of the above template to find all files with a hyphen in the filename (using RE "*-*") and to then replace the hyphen and everything following (RE f/-*/) it with nothing. Replacing with nothing is a verbose way to say deleting.
+
+find . -type f -name "*-*" -exec bash -c 'f="$1"; g="${f/-*/}"; mv -- "$f" "$g"' _ '{}' \;
+
+Below is another method that I did not use, so I'm not going to go into how it works. Just seems to be another way to do the same thing as above.
+
+find . -type f -name "* *" -exec bash -c 'f="$1"; s="${f/_ / }"; mv -- "$f" "${f/-*./.}"' _ '{}' \; mv "$f"

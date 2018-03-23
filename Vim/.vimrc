@@ -51,6 +51,13 @@
 " ctrl-g : show the current file's path RELATIVE to the working directory for vim
 "          1 : entered before the command, will show the FULL file path
 "
+" within the vim command line you can move around similarly to how you might
+" move across a normal terminal prompt
+"   ctrl-b : cursor to beginning of command-line
+"   ctrl-e : cursor to end of command-line
+"   ctrl-w : delete the word before the cursor
+"   ctrl-u : remove all characters between the cursor position and the beginning of the line
+"
 " plugins managed with vimplug: https://github.com/junegunn/vim-plug
 " to install run, after installing vimplug, run :PlugInstall
 " to remove a plugin, delete from this list and run :PlugClean
@@ -196,16 +203,29 @@ let g:ctrlp_prompt_mappings = {
 " persist cache so when restarting vim ctrlp loads faster
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 
-" if the_silver_searcher (called with alias 'ag') is installed then use
-" that for ctrlp searches to improve search speed
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-
 " remap ctrl b from scroll visible buffer back one page
 " to open ctrlp in buffer mode
 nnoremap <silent> <C-b> :CtrlPBuffer<CR><C-b>
 nnoremap <silent> <C-m> :CtrlPMRUFiles<CR><C-m>
+
+" ------------
+" keyword search config
+" ------------
+
+" prefer silver searcher (ag) if available, then ack, and finally fall back to grep
+if executable('ack')
+  set grepprg=ack\-H\--nogroup\--nocolor
+endif
+
+" if the_silver_searcher (called with alias 'ag') is installed then use
+" that for searching across files to improve speed
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ackprg = 'ag --nogroup --nocolor --column'
+  " in case there is no ack / ackvim on the system, set grep to use silver surfer
+  set grepprg=ag\ --vimgrep\ $*
+  set grepformat=%f:%l%c%m
+endif
 
 " ----
 " Misc
