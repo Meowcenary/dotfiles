@@ -14,8 +14,7 @@
 "
 "
 " These are the most frequently used shortcuts, each key is separated with
-" a '-' but should be entered as a chord or in quick sequence (e.g g-c-c means
-" click g and then c twice)
+" a '-' but should be entered as a chord or in quick sequence (e.g g-c-c means click g and then c twice)
 "
 " g-c-c : toggle commenting on a line or area
 " \-t : open NERD TREE
@@ -70,7 +69,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'easymotion/vim-easymotion'
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'vim-airline/vim-airline'
-    Plug 'scrooloose/syntastic'
+    " Plug 'scrooloose/syntastic'
     Plug 'kien/ctrlp.vim'
     Plug 'tomtom/tcomment_vim'
     Plug 'mileszs/ack.vim'
@@ -100,17 +99,32 @@ syntax on
 autocmd BufEnter * EnableStripWhitespaceOnSave
 
 " file type tab settings, these might be handled by vim-polyglot too
-autocmd Filetype ruby setlocal tabstop=2 shiftwidth=2 expandtab
-autocmd Filetype python setlocal tabstop=4 shiftwidth=4 expandtab
-autocmd Filetype javascript setlocal tabstop=4 shiftwidth=4 expandtab
+" *11/26/18* vim-polyglot doesn't seem to be working as expected so
+" in the meantime just add required syntax below
+"
+" autocmd Filetype eruby setlocal tabstop=2 shiftwidth=2 expandtab
+" autocmd Filetype haml setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd Filetype html setlocal tabstop=4 shiftwidth=4 expandtab
+autocmd Filetype javascript setlocal tabstop=4 shiftwidth=4 expandtab
+autocmd Filetype coffee setlocal tabstop=2 shiftwidth=2 expandtab
+" autocmd Filetype python setlocal tabstop=4 shiftwidth=4 expandtab
+" autocmd Filetype ruby setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype scss setlocal tabstop=2 shiftwidth=2 expandtab
 
 " show number lines on side
 set nu
 
 " horizontal and vertical highlighting respectively
-set cursorline
-set cursorcolumn
+" 08/27/2018 - trying to speed up vim in biggger projects
+"   and this is definitely slowing things down since it has
+"   to redraw on every cursor move
+" 11/26/2018 - might be able to reinclude this if using lazyredraw
+" set cursorline
+" set cursorcolumn
+"
+" set color for vertical bar
+" highlight LineNr ctermfg = grey
+
 
 " nohlsearch or noh command hides highlighting
 set hlsearch
@@ -118,11 +132,12 @@ set hlsearch
 " as you type a search, go to the text that matches
 set incsearch
 
+" only redraw if necessary
+set lazyredraw
+
 " <Ctrl-l> redraws the screen removing search highlighting and snytastic markings
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
-" set color for vertical bar
-highlight LineNr ctermfg = grey
 
 " set color scheme, currently using custom badwolf color scheme
 " install custom color schemes to ~/.vim/colors/<color_name>.vim
@@ -157,35 +172,35 @@ nnoremap <silent> tf :tabfirst<CR>
 "   to use. E.g flake8, rubocop, etc. syntastic just connects vim to a
 "   linter program
 
-let g:syntastic_mode_map = { 'mode': 'passive',
-                          \ 'active_filetypes': [],
-                          \ 'passive_filetypes': [] }
-
-let g:syntastic_auto_loc_list=1
-
-" by default only location list only updated when
-" :Errors command is run with the below command
-" always update location list when checkers run
-let g:syntastic_always_populate_loc_list=1
-
-" use f keys to control syntax checking
-nnoremap <silent> <F5> :SyntasticCheck<CR>
-nnoremap <silent> <F4> :Errors<CR>
-nnoremap <silent> <F3> :lclose<CR>
-nnoremap <silent> <F2> :SyntasticReset<CR>
-
-" syntastic file checkers, view a full list of file checkers with :help syntastic-checkers
-" a checker listed in [] brackets will tell syntastic what to use automatically on :SyntasticCheck
+" let g:syntastic_mode_map = { 'mode': 'passive',
+"                           \ 'active_filetypes': [],
+"                           \ 'passive_filetypes': [] }
 "
-" the syntax for each checker follows below pattern
-" let g:syntastic_<filetype>_checkers = ['checker-name']
-" to tell syntastic what executable version to run provide path
-" let g:syntastic_ruby_ruby_exec = 'path/to/ruby/version'
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_ruby_ruby_exec = '/home/eric/.rubies/ruby-2.3.0/bin/ruby'
-
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_python_exec = '/usr/bin/python3'
+" let g:syntastic_auto_loc_list=1
+"
+" " by default only location list only updated when
+" " :Errors command is run with the below command
+" " always update location list when checkers run
+" let g:syntastic_always_populate_loc_list=1
+"
+" " use f keys to control syntax checking
+" nnoremap <silent> <F5> :SyntasticCheck<CR>
+" nnoremap <silent> <F4> :Errors<CR>
+" nnoremap <silent> <F3> :lclose<CR>
+" nnoremap <silent> <F2> :SyntasticReset<CR>
+"
+" " syntastic file checkers, view a full list of file checkers with :help syntastic-checkers
+" " a checker listed in [] brackets will tell syntastic what to use automatically on :SyntasticCheck
+" "
+" " the syntax for each checker follows below pattern
+" " let g:syntastic_<filetype>_checkers = ['checker-name']
+" " to tell syntastic what executable version to run provide path
+" " let g:syntastic_ruby_ruby_exec = 'path/to/ruby/version'
+" let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+" let g:syntastic_ruby_ruby_exec = '/home/eric/.rubies/ruby-2.3.0/bin/ruby'
+"
+" let g:syntastic_python_checkers = ['flake8']
+" let g:syntastic_python_python_exec = '/usr/bin/python3'
 
 " ------------
 " ctrlp config
