@@ -1,5 +1,9 @@
 #! /bin/bash
 
+# 11/27/2018
+# THIS SCRIPT IS DUBIOUS AT BEST! I can't remember if I ever tested this and if I had
+# previously done so, I don't know what the result was. Have no expectations for this to work.
+
 # script to quickly host a ruby on rails project with a local mac osx machine
 # making it available across the local network at the machine's IP on port 80
 # to access enter this into your web browser address bar: <hosting machine's ip>:80
@@ -10,7 +14,8 @@ ipaddress=$(ipconfig getifaddr en0)
 export LOCALHOST_IP=$ipaddress
 
 # put your rails project directory here
-cd /Volumes/Storage/Dropbox/Repositories/extendmed/digitalobgyn.com
+# cd /Volumes/Storage/Dropbox/Repositories/extendmed/digitalobgyn.com
+cd ~/ExtendMedProjects/digitalobgyn.com
 
 # boot WeBRICK
 #  sudo is required to bind to port < 1024
