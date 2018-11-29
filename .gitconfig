@@ -27,6 +27,10 @@
     fp  = format-patch
     rmt = remote
 
+    # show branches sorting by
+    # commit date with formatting
+    brs = for-each-ref --sort=-committerdate refs/heads/ --format='%(authordate:short) %(color:red)%(objectname:short) %(color:yellow)%(refname:short)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))'
+
     # add shortcuts
     a  = add
     ap = add --patch
