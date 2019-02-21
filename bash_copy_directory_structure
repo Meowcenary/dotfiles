@@ -1,0 +1,10 @@
+# the below command copies all directory names from a provided directory and then creates new empty directories
+# with the provided names wherever the command is run
+
+mkdir $(echo $file | ls -p ../path_to_directory_to_copy_structure_from/ | grep /$ | tr '/\n', ' ')
+
+# As an example, running the below in the directory ~/Comics/NewMarvel
+# mkdir $(echo $file | ls -p ~/Comics/Marvel/ | grep /$ | tr '/\n', ' ')
+# would create the directory ~/Comics/NewMarvel/ with all the directories in
+# ~/Comics/Marvel having empty copies here.
+
